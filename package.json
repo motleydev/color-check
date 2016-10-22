@@ -1,0 +1,40 @@
+{
+  "name": "color-check",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "repository": "motleydev/color-check",
+  "author": {
+    "name": "Jesse Martin",
+    "email": "admin@jessedavidmartin.com",
+    "url": "jessedavidmartin.com"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "post-build": "onchange 'dist/**.js' 'test/**.js' -- npm test",
+    "watch": "npm run build -- -w & npm run post-build",
+    "test": "standard && mocha --compilers js:babel-core/register",
+    "prepublish": "npm run build && npm test"
+  },
+  "keywords": [
+    "WCAG", "WCAG2", "color", "wcag", "wcag2", "snook", "contrast", "legibility"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "babel": "*",
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "chai": "*",
+    "mocha": "*",
+    "onchange": "1.x",
+    "standard": "*"
+  },
+  "standard": {
+    "ignore": [
+      "coverage/**",
+      "dist/**",
+      "node_modules/**"
+    ]
+  }
+}
