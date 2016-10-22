@@ -21,31 +21,29 @@ const colorCheck = {
  */
 
 colorCheck.hexToRgb = colorValue => {
-
   let color = Object.assign({}, colorCheck.color)
 
   // Check return if already an object.
   if (colorValue !== null &&
     typeof colorValue === 'object' &&
     colorValue.hasOwnProperty('r')) {
-      return colorValue
-    }
+    return colorValue
+  }
 
   // Get parts of Hex
   let hexPat = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
 
   // Parse the values and remove the full-string match
-  let result = hexPat.exec(colorValue)
-    .map((val, index) => {
-      if (index > 0)
-        return parseInt(val, 16)
-    }).slice(1);
+  let result = hexPat.exec(colorValue).map((val, index) => {
+    if (index > 0) {
+      return parseInt(val, 16)
+    }
+  }).slice(1);
 
   // destructuring assignment
   [color.r, color.g, color.b] = result
 
   return result ? color : null
-
 }
 
 /**
@@ -56,7 +54,6 @@ colorCheck.hexToRgb = colorValue => {
  */
 
 colorCheck.colorDifference = (f, b) => {
-
   let fg = colorCheck.hexToRgb(f)
   let bg = colorCheck.hexToRgb(b)
 
@@ -64,11 +61,11 @@ colorCheck.colorDifference = (f, b) => {
 
   let colorDifference = 0
 
-  Object.keys(colorCheck.color)
-    .map((val) => colorDifference += _maxMin(fg, bg, val))
+  Object.keys(colorCheck.color).map((val) => {
+    colorDifference += _maxMin(fg, bg, val)
+  })
 
   return colorDifference >= colorCheck.colorContrastThreshold
-
 }
 
 /**
@@ -79,7 +76,6 @@ colorCheck.colorDifference = (f, b) => {
  */
 
 colorCheck.colorBrightnessDifference = (f, b) => {
-
   let fg = colorCheck.hexToRgb(f)
   let bg = colorCheck.hexToRgb(b)
 
@@ -89,8 +85,7 @@ colorCheck.colorBrightnessDifference = (f, b) => {
   let bY = brightness(bg.r, bg.g, bg.b)
   let fY = brightness(fg.r, fg.g, fg.b)
 
-  return Math.round(Math.abs(bY-fY)) >= colorCheck.brightnessThreshold
-
+  return Math.round(Math.abs(bY - fY)) >= colorCheck.brightnessThreshold
 }
 
 /**
@@ -99,13 +94,11 @@ colorCheck.colorBrightnessDifference = (f, b) => {
  * @return {number} gives a numeric value
  */
 colorCheck.colorGetLuminance = (rgb) => {
-
   rgb.map((val) => {
-    return val <= 0.03928 ? val / 12.92 : Math.pow(((val + 0.055)/1.055), 2.4)
+    return val <= 0.03928 ? val / 12.92 : Math.pow(((val + 0.055) / 1.055), 2.4)
   })
 
   return (0.2126 * rgb[0]) + (0.7152 * rgb[1]) + (0.0722 * rgb[2])
-
 }
 
 /**
@@ -116,7 +109,6 @@ colorCheck.colorGetLuminance = (rgb) => {
  */
 
 colorCheck.colorContrast = (f, b) => {
-
   let fg = colorCheck.hexToRgb(f)
   let bg = colorCheck.hexToRgb(b)
 
@@ -124,19 +116,18 @@ colorCheck.colorContrast = (f, b) => {
 
   let luminance = (colorObj) => {
     return Object.keys(colorObj).map((val) => {
-      return colorObj[val]/255
+      return colorObj[val] / 255
     })
   }
 
-  let l1 = colorCheck.colorGetLuminance([ ...luminance(fg)])
-  let l2 = colorCheck.colorGetLuminance([ ...luminance(bg)])
+  let l1 = colorCheck.colorGetLuminance([...luminance(fg)])
+  let l2 = colorCheck.colorGetLuminance([...luminance(bg)])
 
-  ratio = l1 >= l2 ?
-    (l1 + 0.05) / (l2 + 0.05) :
-    (l2 + .05) / (l1 + .05)
+  ratio = l1 >= l2
+    ? (l1 + 0.05) / (l2 + 0.05)
+    : (l2 + 0.05) / (l1 + 0.05)
 
   return Math.round(ratio * 100) / 100
-
 }
 
 /**
@@ -188,7 +179,5 @@ colorCheck.aaa = (f, b) => colorCheck.colorContrast(f, b) >= 7
  */
 
 colorCheck.aaa_18 = (f, b) => colorCheck.colorContrast(f, b) >= 4.5
-
-
 
 module.exports = colorCheck
