@@ -2,6 +2,7 @@
 [![travis][travis-image]][travis-url]
 [![npm][npm-image]][npm-url]
 [![js-standard-style][standard-style-image]][standard-style-url]
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 [travis-image]: https://img.shields.io/travis/motleydev/color-check.svg?style=flat
 [travis-url]: https://travis-ci.org/motleydev/color-check
