@@ -2,7 +2,7 @@
 'use strict'
 
 import { expect } from 'chai'
-import colorCheck from '../'
+import colorCheck from '../src/'
 
 // hexToRgb
 
