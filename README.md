@@ -1,7 +1,6 @@
 # Color Check
-![travis](https://img.shields.io/travis/motleydev/)
-![npm](https://img.shields.io/npm/v/color-check.svg?style=flat)
-![js-standard-style](https://github.com/feross/standard]][standard-style-url)
+![travis](https://img.shields.io/travis/motleydev/color-check.svg)
+![js-standard-style](https://github.com/feross/standard)
 ![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)
 ![codecov](https://codecov.io/gh/motleydev/color-check)
 
