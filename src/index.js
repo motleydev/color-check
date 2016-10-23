@@ -13,11 +13,11 @@ const colorCheck = {
 }
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description Checks if a hex string or object was given and returns
  * the rgb color values of the former. To keep a tiny library, it's the user's
  * responsibility to provide valid hex/rgbObj values.
- * @return {object} returns an object of shape {r, g, b}
+ * @return {object} Returns an object of shape {r, g, b}
  */
 
 colorCheck.hexToRgb = colorValue => {
@@ -47,10 +47,10 @@ colorCheck.hexToRgb = colorValue => {
 }
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description Checks if the two colors have siignificant color difference
- * @return {boolean} gives a numeric value must be 500 or greater
+ * @return {boolean} Gives a numeric value must be 500 or greater
  */
 
 colorCheck.colorDifference = (f, b) => {
@@ -69,10 +69,10 @@ colorCheck.colorDifference = (f, b) => {
 }
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description returns a boolean value if there is enough brightness difference
- * @return {boolean} gives a numeric value must be over 125
+ * @return {boolean} Gives a numeric value must be over 125
  */
 
 colorCheck.colorBrightnessDifference = (f, b) => {
@@ -89,9 +89,9 @@ colorCheck.colorBrightnessDifference = (f, b) => {
 }
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @description returns a numeric value of the total luminance
- * @return {number} gives a numeric value
+ * @param  {array} Must be an array of three numbers within 0-255 inclusive
+ * @description Returns a numeric value of the total luminance
+ * @return {number} Gives a numeric value
  */
 colorCheck.colorGetLuminance = (rgb) => {
   rgb.map((val) => {
@@ -102,10 +102,10 @@ colorCheck.colorGetLuminance = (rgb) => {
 }
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description returns a numeric value for the color contrast
- * @return {number} gives a numeric value
+ * @return {number} Gives a numeric value
  */
 
 colorCheck.colorContrast = (f, b) => {
@@ -131,51 +131,51 @@ colorCheck.colorContrast = (f, b) => {
 }
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description returns a boolean if the values are both color compiant and contrast compliant
- * @return {boolean} gives a boolean response.
+ * @return {boolean} Gives a boolean response.
  */
 
 colorCheck.colorCompliance = (f, b) =>
   (colorCheck.colorBrightnessDifference(f, b)) && (colorCheck.colorDifference(f, b))
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description returns a boolean if the value is acceptible for AA standards
  * for legibility of size 14pt font.
- * @return {boolean} gives a boolean response.
+ * @return {boolean} Gives a boolean response.
  */
 
 colorCheck.aa = (f, b) => colorCheck.colorContrast(f, b) >= 4.5
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description returns a boolean if the value is acceptible for AA standards
  * for legibility of size 18pt font.
- * @return {boolean} gives a boolean response.
+ * @return {boolean} Gives a boolean response.
  */
 
 colorCheck.aa_18 = (f, b) => colorCheck.colorContrast(f, b) >= 3
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description returns a boolean if the value is acceptible for AAA standards
  * for legibility of size 14pt font. It's ok, this is very hard to achieve.
- * @return {boolean} gives a boolean response.
+ * @return {boolean} Gives a boolean response.
  */
 
 colorCheck.aaa = (f, b) => colorCheck.colorContrast(f, b) >= 7
 
 /**
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
- * @param  {(string | object)} hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
+ * @param  {(string | object)} Hex color string or object of shape {r, g, b}
  * @description returns a boolean if the value is acceptible for AAA standards
  * for legibility of size 18pt font. It's ok, this is hard to achieve.
- * @return {boolean} gives a boolean response.
+ * @return {boolean} Gives a boolean response.
  */
 
 colorCheck.aaa_18 = (f, b) => colorCheck.colorContrast(f, b) >= 4.5
