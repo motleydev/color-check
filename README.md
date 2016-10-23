@@ -1,17 +1,9 @@
-# color-check
-[![travis][travis-image]][travis-url]
-[![npm][npm-image]][npm-url]
-[![js-standard-style][standard-style-image]][standard-style-url]
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![codecov][codecov-image]][https://codecov.io/gh/motleydev/color-check]
-
-[travis-image]: https://img.shields.io/travis/motleydev/color-check.svg?style=flat
-[travis-url]: https://travis-ci.org/motleydev/color-check
-[npm-image]: https://img.shields.io/npm/v/color-check.svg?style=flat
-[npm-url]: https://npmjs.org/package/color-check
-[standard-style-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat
-[standard-style-url]: https://github.com/feross/standard
-[codecov-image]: https://img.shields.io/codecov/c/github/motleydev/color-check.svg
+# Color Check
+![travis](https://img.shields.io/travis/motleydev/)
+![npm](https://img.shields.io/npm/v/color-check.svg?style=flat)
+![js-standard-style](https://github.com/feross/standard]][standard-style-url)
+![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)
+![codecov](https://codecov.io/gh/motleydev/color-check)
 
 ## Install
 
@@ -21,34 +13,11 @@ $ npm install --save color-check
 
 ## Usage
 
+# Docs Coming Soon
+
 ```js
 var colorCheck = require('color-check');
-
-colorCheck('unicorns');
-//=> unicorns & rainbows
 ```
-
-## API
-
-### colorCheck(input, [options])
-
-#### input
-
-- *Required*
-- Type: `string`
-
-Lorem ipsum.
-
-#### options
-
-##### foo
-
-- Type: `boolean`
-- Default: `false`
-
-Lorem ipsum.
-
-## Contributing
 
 ### Build
 
