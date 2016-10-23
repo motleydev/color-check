@@ -10,7 +10,7 @@
   "author": {
     "name": "Jesse Martin",
     "email": "admin@jessedavidmartin.com",
-    "url": "jessedavidmartin.com"
+    "url": "https://jessedavidmartin.com"
   },
   "main": "dist/index.js",
   "scripts": {

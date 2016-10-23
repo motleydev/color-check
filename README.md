@@ -6,7 +6,7 @@
 
 Color Check is a very tine library for checking your foreground and backgorunds colors against the WCAG2 color compliance standard. There are a range of methods which can be found in the [docs](/docs/api.md) including returning the actual values used in calculating the AA, AA 18, AAA and AAA 18 standards as well as color contrast and color difference checks.
 
-There are other libraries such as the excelent (color)[https://www.npmjs.com/package/color] package which will parse any valid css color syntax and provide methods for checking the values needed. This library is smaller and returns boolean values where possible. Being smaller, it requires *you* to provide the valid hex string or rgb color object. Errors will simply fail.
+There are other libraries such as the excelent [color](https://www.npmjs.com/package/color) package which will parse any valid css color syntax and provide methods for checking the values needed. This library is smaller and returns boolean values where possible. Being smaller, it requires *you* to provide the valid hex string or rgb color object. Errors will simply fail.
 
 ## Getting Started
 
