@@ -1,0 +1,159 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/jdm/.nvm/v6.3.0/bin/node',
+1 verbose cli   '/Users/jdm/.nvm/v6.3.0/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.3
+3 info using node@v6.3.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/jdm/Development/OpenSource/NPM/color-check',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/jdm/.npm/color-check/0.0.0-Ask-SemVerCli/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/jdm/.npm correctMkdir not in flight; initializing
+10 info lifecycle color-check@0.0.0-Ask-SemVerCli~prepublish: color-check@0.0.0-Ask-SemVerCli
+11 verbose lifecycle color-check@0.0.0-Ask-SemVerCli~prepublish: unsafe-perm in lifecycle true
+12 verbose lifecycle color-check@0.0.0-Ask-SemVerCli~prepublish: PATH: /Users/jdm/.nvm/v6.3.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/jdm/Development/OpenSource/NPM/color-check/node_modules/.bin:/Users/jdm/.nvm/v6.3.0/bin:/Users/jdm/.nvm/v6.3.0/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Users/jdm/.rvm/gems/ruby-2.1.1/bin:/Users/jdm/.rvm/gems/ruby-2.1.1@global/bin:/Users/jdm/.rvm/rubies/ruby-2.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/jdm/.rvm/bin
+13 verbose lifecycle color-check@0.0.0-Ask-SemVerCli~prepublish: CWD: /Users/jdm/Development/OpenSource/NPM/color-check
+14 silly lifecycle color-check@0.0.0-Ask-SemVerCli~prepublish: Args: [ '-c', 'NODE_ENV=\'production\' npm run build && npm test' ]
+15 silly lifecycle color-check@0.0.0-Ask-SemVerCli~prepublish: Returned: code: 0  signal: null
+16 verbose tar pack [ '/Users/jdm/.npm/color-check/0.0.0-Ask-SemVerCli/package.tgz',
+16 verbose tar pack   '/Users/jdm/Development/OpenSource/NPM/color-check' ]
+17 verbose tarball /Users/jdm/.npm/color-check/0.0.0-Ask-SemVerCli/package.tgz
+18 verbose folder /Users/jdm/Development/OpenSource/NPM/color-check
+19 verbose addLocalTarball adding from inside cache /Users/jdm/.npm/color-check/0.0.0-Ask-SemVerCli/package.tgz
+20 verbose correctMkdir /Users/jdm/.npm correctMkdir not in flight; initializing
+21 silly cache afterAdd color-check@0.0.0-Ask-SemVerCli
+22 verbose afterAdd /Users/jdm/.npm/color-check/0.0.0-Ask-SemVerCli/package/package.json not in flight; writing
+23 verbose correctMkdir /Users/jdm/.npm correctMkdir not in flight; initializing
+24 verbose afterAdd /Users/jdm/.npm/color-check/0.0.0-Ask-SemVerCli/package/package.json written
+25 silly publish { name: 'color-check',
+25 silly publish   description: '![travis](https://img.shields.io/travis/motleydev/color-check.svg) ![js-standard-style](https://github.com/feross/standard) ![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg) ![codecov](https://codecov.io/gh/motleydev/color-check)',
+25 silly publish   version: '0.0.0-Ask-SemVerCli',
+25 silly publish   license: 'MIT',
+25 silly publish   repository:
+25 silly publish    { type: 'git',
+25 silly publish      url: 'git+https://github.com/motleydev/color-check.git' },
+25 silly publish   author:
+25 silly publish    { name: 'Jesse Martin',
+25 silly publish      email: 'admin@jessedavidmartin.com',
+25 silly publish      url: 'jessedavidmartin.com' },
+25 silly publish   main: 'dist/index.js',
+25 silly publish   scripts:
+25 silly publish    { commit: 'git-cz',
+25 silly publish      build: 'babel src -d dist',
+25 silly publish      'check-coverage': 'nyc check-coverage --statements 100 --functions 100',
+25 silly publish      'report-coverage': 'nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov',
+25 silly publish      prebuild: 'rimraf dist',
+25 silly publish      'post-build': 'onchange \'dist/**.js\' \'test/**.js\' -- npm test',
+25 silly publish      watch: 'npm run build -- -w & npm run post-build',
+25 silly publish      'watch:test': 'npm t -- -w',
+25 silly publish      test: 'standard && mocha test/test.js --compilers js:babel-register',
+25 silly publish      cover: 'nyc npm t',
+25 silly publish      prepublish: 'NODE_ENV=\'production\' npm run build && npm test',
+25 silly publish      'semantic-release': 'semantic-release pre && npm publish && semantic-release post' },
+25 silly publish   files: [ 'dist', 'README.md' ],
+25 silly publish   keywords:
+25 silly publish    [ 'WCAG',
+25 silly publish      'WCAG2',
+25 silly publish      'color',
+25 silly publish      'wcag',
+25 silly publish      'wcag2',
+25 silly publish      'snook',
+25 silly publish      'contrast',
+25 silly publish      'legibility' ],
+25 silly publish   dependencies: {},
+25 silly publish   devDependencies:
+25 silly publish    { 'babel-cli': '^6.16.0',
+25 silly publish      'babel-preset-babili': '0.0.5',
+25 silly publish      'babel-preset-es2015': '^6.16.0',
+25 silly publish      'babel-preset-stage-2': '6.17.0',
+25 silly publish      'babel-register': '6.16.3',
+25 silly publish      chai: '*',
+25 silly publish      codecov: '1.0.1',
+25 silly publish      commitizen: '2.8.6',
+25 silly publish      'cz-conventional-changelog': '1.2.0',
+25 silly publish      ghooks: '1.3.2',
+25 silly publish      mocha: '*',
+25 silly publish      nyc: '8.3.2',
+25 silly publish      onchange: '1.x',
+25 silly publish      rimraf: '2.5.4',
+25 silly publish      'semantic-release': '^4.3.5',
+25 silly publish      standard: '*' },
+25 silly publish   standard: { ignore: [ 'coverage/**', 'dist/**', 'node_modules/**' ] },
+25 silly publish   config:
+25 silly publish    { ghooks: { 'pre-commit': 'npm run cover && npm run check-coverage' },
+25 silly publish      commitizen: { path: './node_modules/cz-conventional-changelog' } },
+25 silly publish   readme: '# Color Check\n![travis](https://img.shields.io/travis/motleydev/color-check.svg)\n![js-standard-style](https://github.com/feross/standard)\n![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)\n![codecov](https://codecov.io/gh/motleydev/color-check)\n\n## Install\n\n```\n$ npm install --save color-check\n```\n\n## Usage\n\n# Docs Coming Soon\n\n```js\nvar colorCheck = require(\'color-check\');\n```\n\n### Build\n\n```js\nnpm run build\n```\n\n### Test\n\n```js\nnpm test\n```\n\n### Watch\n\nTo watch for changes, build them and run the tests:\n\n```js\nnpm run watch\n```\n\n## License\n\nMIT © [Jesse Martin](https://jessedavidmartin.com)\n',
+25 silly publish   readmeFilename: 'README.md',
+25 silly publish   gitHead: '15ba9f1bbf05551313362ceb6f3509d9bc6e2af0',
+25 silly publish   bugs: { url: 'https://github.com/motleydev/color-check/issues' },
+25 silly publish   homepage: 'https://github.com/motleydev/color-check#readme',
+25 silly publish   _id: 'color-check@0.0.0-Ask-SemVerCli',
+25 silly publish   _shasum: '5e0b1f38bf1ec41291c3509ceff0d909ec28ef59',
+25 silly publish   _from: '.' }
+26 verbose getPublishConfig undefined
+27 silly mapToRegistry name color-check
+28 silly mapToRegistry using default registry
+29 silly mapToRegistry registry https://registry.npmjs.org/
+30 silly mapToRegistry data Result {
+30 silly mapToRegistry   raw: 'color-check',
+30 silly mapToRegistry   scope: null,
+30 silly mapToRegistry   escapedName: 'color-check',
+30 silly mapToRegistry   name: 'color-check',
+30 silly mapToRegistry   rawSpec: '',
+30 silly mapToRegistry   spec: 'latest',
+30 silly mapToRegistry   type: 'tag' }
+31 silly mapToRegistry uri https://registry.npmjs.org/color-check
+32 verbose publish registryBase https://registry.npmjs.org/
+33 silly publish uploading /Users/jdm/.npm/color-check/0.0.0-Ask-SemVerCli/package.tgz
+34 verbose request uri https://registry.npmjs.org/color-check
+35 verbose request sending authorization for write operation
+36 info attempt registry request try #1 at 2:37:13 AM
+37 verbose request using bearer token for auth
+38 verbose request id f8c4cda7b58f7b62
+39 http request PUT https://registry.npmjs.org/color-check
+40 http 403 https://registry.npmjs.org/color-check
+41 verbose headers { 'content-type': 'application/json',
+41 verbose headers   'cache-control': 'max-age=300',
+41 verbose headers   'content-length': '109',
+41 verbose headers   'accept-ranges': 'bytes',
+41 verbose headers   date: 'Sun, 23 Oct 2016 00:37:14 GMT',
+41 verbose headers   via: '1.1 varnish',
+41 verbose headers   connection: 'keep-alive',
+41 verbose headers   'x-served-by': 'cache-fra1236-FRA',
+41 verbose headers   'x-cache': 'MISS',
+41 verbose headers   'x-cache-hits': '0',
+41 verbose headers   'x-timer': 'S1477183033.865409,VS0,VE1094',
+41 verbose headers   vary: 'Accept-Encoding' }
+42 verbose request invalidating /Users/jdm/.npm/registry.npmjs.org/color-check on PUT
+43 error publish Failed PUT 403
+44 verbose stack Error: "You cannot publish over the previously published version 0.0.0-Ask-SemVerCli." : color-check
+44 verbose stack     at makeError (/Users/jdm/.nvm/v6.3.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+44 verbose stack     at CachingRegistryClient.<anonymous> (/Users/jdm/.nvm/v6.3.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+44 verbose stack     at Request._callback (/Users/jdm/.nvm/v6.3.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+44 verbose stack     at Request.self.callback (/Users/jdm/.nvm/v6.3.0/lib/node_modules/npm/node_modules/request/request.js:200:22)
+44 verbose stack     at emitTwo (events.js:106:13)
+44 verbose stack     at Request.emit (events.js:191:7)
+44 verbose stack     at Request.<anonymous> (/Users/jdm/.nvm/v6.3.0/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+44 verbose stack     at emitOne (events.js:101:20)
+44 verbose stack     at Request.emit (events.js:188:7)
+44 verbose stack     at IncomingMessage.<anonymous> (/Users/jdm/.nvm/v6.3.0/lib/node_modules/npm/node_modules/request/request.js:988:12)
+45 verbose statusCode 403
+46 verbose pkgid color-check
+47 verbose cwd /Users/jdm/Development/OpenSource/NPM/color-check
+48 error Darwin 16.0.0
+49 error argv "/Users/jdm/.nvm/v6.3.0/bin/node" "/Users/jdm/.nvm/v6.3.0/bin/npm" "publish"
+50 error node v6.3.0
+51 error npm  v3.10.3
+52 error code E403
+53 error "You cannot publish over the previously published version 0.0.0-Ask-SemVerCli." : color-check
+54 error If you need help, you may report this error at:
+54 error     <https://github.com/npm/npm/issues>
+55 verbose exit [ 1, true ]
