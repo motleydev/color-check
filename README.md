@@ -3,6 +3,7 @@
 [![npm][npm-image]][npm-url]
 [![js-standard-style][standard-style-image]][standard-style-url]
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![codecov][codecov-image]][https://codecov.io/gh/motleydev/color-check]
 
 [travis-image]: https://img.shields.io/travis/motleydev/color-check.svg?style=flat
 [travis-url]: https://travis-ci.org/motleydev/color-check
@@ -10,6 +11,7 @@
 [npm-url]: https://npmjs.org/package/color-check
 [standard-style-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat
 [standard-style-url]: https://github.com/feross/standard
+[codecov-image]: https://img.shields.io/codecov/c/github/motleydev/color-check.svg
 
 ## Install
 
