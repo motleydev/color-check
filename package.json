@@ -1,6 +1,6 @@
 {
   "name": "color-check",
-  "description": "",
+  "description": "Color Check is a very tine library for checking your foreground and backgorunds colors against the WCAG2 color compliance standard.",
   "version": "0.0.0-Ask-SemVerCli",
   "license": "MIT",
   "repository": {
