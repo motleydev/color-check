@@ -36,7 +36,7 @@ responsibility to provide valid hex/rgbObj values.
 <a name="colorCheck.colorDifference"></a>
 
 ### colorCheck.colorDifference(hex, hex) ⇒ <code>boolean</code>
-Checks if the two colors have siignificant color difference
+Checks if the two colors have significant color difference
 
 **Kind**: static method of <code>[colorCheck](#colorCheck)</code>  
 **Returns**: <code>boolean</code> - gives a numeric value must be 500 or greater  
@@ -87,7 +87,7 @@ returns a numeric value for the color contrast
 <a name="colorCheck.colorCompliance"></a>
 
 ### colorCheck.colorCompliance(hex, hex) ⇒ <code>boolean</code>
-returns a boolean if the values are both color compiant and contrast compliant
+returns a boolean if the values are both color compliant and contrast compliant
 
 **Kind**: static method of <code>[colorCheck](#colorCheck)</code>  
 **Returns**: <code>boolean</code> - gives a boolean response.  
@@ -100,7 +100,7 @@ returns a boolean if the values are both color compiant and contrast compliant
 <a name="colorCheck.aa"></a>
 
 ### colorCheck.aa(hex, hex) ⇒ <code>boolean</code>
-returns a boolean if the value is acceptible for AA standards
+returns a boolean if the value is acceptable for AA standards
 for legibility of size 14pt font.
 
 **Kind**: static method of <code>[colorCheck](#colorCheck)</code>  
@@ -114,7 +114,7 @@ for legibility of size 14pt font.
 <a name="colorCheck.aa_18"></a>
 
 ### colorCheck.aa_18(hex, hex) ⇒ <code>boolean</code>
-returns a boolean if the value is acceptible for AA standards
+returns a boolean if the value is acceptable for AA standards
 for legibility of size 18pt font.
 
 **Kind**: static method of <code>[colorCheck](#colorCheck)</code>  
@@ -128,7 +128,7 @@ for legibility of size 18pt font.
 <a name="colorCheck.aaa"></a>
 
 ### colorCheck.aaa(hex, hex) ⇒ <code>boolean</code>
-returns a boolean if the value is acceptible for AAA standards
+returns a boolean if the value is acceptable for AAA standards
 for legibility of size 14pt font. It's ok, this is very hard to achieve.
 
 **Kind**: static method of <code>[colorCheck](#colorCheck)</code>  
@@ -142,7 +142,7 @@ for legibility of size 14pt font. It's ok, this is very hard to achieve.
 <a name="colorCheck.aaa_18"></a>
 
 ### colorCheck.aaa_18(hex, hex) ⇒ <code>boolean</code>
-returns a boolean if the value is acceptible for AAA standards
+returns a boolean if the value is acceptable for AAA standards
 for legibility of size 18pt font. It's ok, this is hard to achieve.
 
 **Kind**: static method of <code>[colorCheck](#colorCheck)</code>  
