@@ -5,179 +5,103 @@
  */
 
 const colorCheck = {
-
-  color: {r: 0, g: 0, b: 0},
   brightnessThreshold: 125,
   colorContrastThreshold: 500
-
 }
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description Checks if a hex string or object was given and returns
- * the rgb color values of the former. To keep a tiny library, it's the user's
- * responsibility to provide valid hex/rgbObj values.
+ * @param  {(string|object)} colorValue - Hex color string or object of shape {r, g, b}
  * @return {object} Returns an object of shape {r, g, b}
  */
-
 colorCheck.hexToRgb = colorValue => {
-  let color = Object.assign({}, colorCheck.color)
-
-  // Check return if already an object.
-  if (colorValue !== null &&
-    typeof colorValue === 'object' &&
-    colorValue.hasOwnProperty('r')) {
+  if (colorValue && typeof colorValue === 'object' && 'r' in colorValue) {
     return colorValue
   }
-
-  // Get parts of Hex
-  let hexPat = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
-
-  // Parse the values and remove the full-string match
-  let result = hexPat.exec(colorValue).map((val, index) => {
-    if (index > 0) {
-      return parseInt(val, 16)
-    }
-  }).slice(1);
-
-  // destructuring assignment
-  [color.r, color.g, color.b] = result
-
-  return result ? color : null
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(colorValue)
+  return { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
 }
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description Checks if the two colors have siignificant color difference
- * @return {boolean} Gives a numeric value must be 500 or greater
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {boolean} True if color difference >= 500
  */
-
 colorCheck.colorDifference = (f, b) => {
-  let fg = colorCheck.hexToRgb(f)
-  let bg = colorCheck.hexToRgb(b)
-
-  let _maxMin = (x, y, v) => Math.max(x[v], y[v]) - Math.min(x[v], y[v])
-
-  let colorDifference = 0
-
-  Object.keys(colorCheck.color).map((val) => {
-    colorDifference += _maxMin(fg, bg, val)
-  })
-
-  return colorDifference >= colorCheck.colorContrastThreshold
+  const fg = colorCheck.hexToRgb(f)
+  const bg = colorCheck.hexToRgb(b)
+  return Math.abs(fg.r - bg.r) + Math.abs(fg.g - bg.g) + Math.abs(fg.b - bg.b) >= colorCheck.colorContrastThreshold
 }
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description returns a boolean value if there is enough brightness difference
- * @return {boolean} Gives a numeric value must be over 125
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {boolean} True if brightness difference >= 125
  */
-
 colorCheck.colorBrightnessDifference = (f, b) => {
-  let fg = colorCheck.hexToRgb(f)
-  let bg = colorCheck.hexToRgb(b)
-
-  let brightness = (r, g, b) =>
-    ((r * 299) + (g * 587) + (b * 114)) / 1000
-
-  let bY = brightness(bg.r, bg.g, bg.b)
-  let fY = brightness(fg.r, fg.g, fg.b)
-
-  return Math.round(Math.abs(bY - fY)) >= colorCheck.brightnessThreshold
+  const fg = colorCheck.hexToRgb(f)
+  const bg = colorCheck.hexToRgb(b)
+  const brightness = c => (c.r * 299 + c.g * 587 + c.b * 114) / 1000
+  return Math.abs(brightness(fg) - brightness(bg)) >= colorCheck.brightnessThreshold
 }
 
 /**
- * @param  {array} Must be an array of three numbers within 0-255 inclusive
- * @description Returns a numeric value of the total luminance
- * @return {number} Gives a numeric value
+ * @param  {array} rgb - Array of three numbers within 0-1 (normalized)
+ * @return {number} Luminance value
  */
-colorCheck.colorGetLuminance = (rgb) => {
-  rgb.map((val) => {
-    return val <= 0.03928 ? val / 12.92 : Math.pow(((val + 0.055) / 1.055), 2.4)
-  })
-
-  return (0.2126 * rgb[0]) + (0.7152 * rgb[1]) + (0.0722 * rgb[2])
+colorCheck.colorGetLuminance = rgb => {
+  const lin = rgb.map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4))
+  return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
 }
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description returns a numeric value for the color contrast
- * @return {number} Gives a numeric value
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {number} Contrast ratio
  */
-
 colorCheck.colorContrast = (f, b) => {
-  let fg = colorCheck.hexToRgb(f)
-  let bg = colorCheck.hexToRgb(b)
-
-  let ratio = 1
-
-  let luminance = (colorObj) => {
-    return Object.keys(colorObj).map((val) => {
-      return colorObj[val] / 255
-    })
-  }
-
-  let l1 = colorCheck.colorGetLuminance([...luminance(fg)])
-  let l2 = colorCheck.colorGetLuminance([...luminance(bg)])
-
-  ratio = l1 >= l2
-    ? (l1 + 0.05) / (l2 + 0.05)
-    : (l2 + 0.05) / (l1 + 0.05)
-
+  const fg = colorCheck.hexToRgb(f)
+  const bg = colorCheck.hexToRgb(b)
+  const lum = c => colorCheck.colorGetLuminance([c.r / 255, c.g / 255, c.b / 255])
+  const l1 = lum(fg)
+  const l2 = lum(bg)
+  const ratio = l1 >= l2 ? (l1 + 0.05) / (l2 + 0.05) : (l2 + 0.05) / (l1 + 0.05)
   return Math.round(ratio * 100) / 100
 }
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description returns a boolean if the values are both color compiant and contrast compliant
- * @return {boolean} Gives a boolean response.
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {boolean} True if both brightness and color difference pass
  */
-
 colorCheck.colorCompliance = (f, b) =>
-  (colorCheck.colorBrightnessDifference(f, b)) && (colorCheck.colorDifference(f, b))
+  colorCheck.colorBrightnessDifference(f, b) && colorCheck.colorDifference(f, b)
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description returns a boolean if the value is acceptible for AA standards
- * for legibility of size 14pt font.
- * @return {boolean} Gives a boolean response.
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {boolean} True if passes AA standard (4.5:1) for 14pt text
  */
-
 colorCheck.aa = (f, b) => colorCheck.colorContrast(f, b) >= 4.5
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description returns a boolean if the value is acceptible for AA standards
- * for legibility of size 18pt font.
- * @return {boolean} Gives a boolean response.
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {boolean} True if passes AA standard (3:1) for 18pt text
  */
-
 colorCheck.aa_18 = (f, b) => colorCheck.colorContrast(f, b) >= 3
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description returns a boolean if the value is acceptible for AAA standards
- * for legibility of size 14pt font. It's ok, this is very hard to achieve.
- * @return {boolean} Gives a boolean response.
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {boolean} True if passes AAA standard (7:1) for 14pt text
  */
-
 colorCheck.aaa = (f, b) => colorCheck.colorContrast(f, b) >= 7
 
 /**
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @param  {(string | object)} Hex color string or object of shape {r, g, b}
- * @description returns a boolean if the value is acceptible for AAA standards
- * for legibility of size 18pt font. It's ok, this is hard to achieve.
- * @return {boolean} Gives a boolean response.
+ * @param  {(string|object)} f - Foreground color
+ * @param  {(string|object)} b - Background color
+ * @return {boolean} True if passes AAA standard (4.5:1) for 18pt text
  */
-
 colorCheck.aaa_18 = (f, b) => colorCheck.colorContrast(f, b) >= 4.5
 
 module.exports = colorCheck

@@ -22,7 +22,7 @@
     "post-build": "onchange 'dist/**.js' 'test/**.js' -- npm test",
     "watch": "npm run build -- -w & npm run post-build",
     "watch:test": "npm t -- -w",
-    "test": "standard && mocha test/test.js --compilers js:babel-register",
+    "test": "standard && mocha test/test.js --require babel-register",
     "cover": "nyc npm t",
     "prepublish": "NODE_ENV='production' npm run build && npm test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
